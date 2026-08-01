@@ -4,7 +4,7 @@ export interface User {
   email: string;
 }
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://bookhaven-ecommerce-production.up.railway.app/api';
 
 export function getToken(): string | null {
   return localStorage.getItem('token');
