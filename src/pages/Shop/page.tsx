@@ -1,26 +1,46 @@
 import { useState, useEffect } from 'react';
+import { apiFetch, isLoggedIn } from '../../lib/api';
+import { useNavigate } from 'react-router-dom';
 
-const allBooks = [
-  { id: 1, image: '/images/1984.jpeg', title: '1984', author: 'George Orwell', price: 12.99, category: 'Fiction' },
-  { id: 2, image: '/images/alchemist.jpeg', title: 'The Alchemist', author: 'Paulo Coelho', price: 14.99, category: 'Fiction' },
-  { id: 3, image: '/images/mockingbird.jpeg', title: 'Mockingbird', author: 'Harper Lee', price: 11.99, category: 'Classics' },
-  { id: 4, image: '/images/dune.jpeg', title: 'Dune', author: 'Frank Herbert', price: 15.99, category: 'Fantasy' },
-  { id: 5, image: '/images/pride.jpeg', title: 'Pride & Prejudice', author: 'Jane Austen', price: 10.99, category: 'Classics' },
-  { id: 6, image: '/images/thetrial.jpeg', title: 'The Trial', author: 'Franz Kafka', price: 13.99, category: 'Classics' },
-  { id: 7, image: '/images/hamlet.jpeg', title: 'Hamlet', author: 'William Shakespeare', price: 9.99, category: 'Classics' },
-  { id: 8, image: '/images/matilda.jpeg', title: 'Matilda', author: 'Roald Dahl', price: 11.99, category: 'Fiction' },
-  { id: 9, image: '/images/belljar.jpeg', title: 'The Bell Jar', author: 'Sylvia Plath', price: 12.99, category: 'Fiction' },
-  { id: 10, image: '/images/restless.jpeg', title: 'Restless', author: 'William Boyd', price: 13.99, category: 'Fiction' },
-  { id: 11, image: '/images/tkiterunner.webp', title: 'The Kite Runner', author: 'Khaled Hosseini', price: 14.99, category: 'Fiction' },
-  { id: 12, image: '/images/tbooktheif.jpeg', title: 'The Book Thief', author: 'Markus Zusak', price: 14.99, category: 'Fiction' }
-];
+interface Book {
+  id: number;
+  image: string;
+  title: string;
+  author: string;
+  price: number;
+  category: string;
+}
 
 const Shop = () => {
+  const navigate = useNavigate();
+  const [allBooks, setAllBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [addingId, setAddingId] = useState<number | null>(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [selectedPriceRange, setSelectedPriceRange] = useState('All Prices');
   const [sortBy, setSortBy] = useState('default');
-  const [filteredBooks, setFilteredBooks] = useState(allBooks);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+
+  // Fetch real books from the backend once, when the page loads
+  useEffect(() => {
+    async function loadBooks() {
+      try {
+        const data = await apiFetch('/books');
+        // Convert price (comes back as a string from Postgres) to a number
+        const normalized = data.map((b: any) => ({ ...b, price: Number(b.price) }));
+        setAllBooks(normalized);
+        setFilteredBooks(normalized);
+      } catch (err: any) {
+        setError('Could not load books. Is the backend server running?');
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadBooks();
+  }, []);
 
   const getPriceRange = (range: string) => {
     switch(range) {
@@ -53,7 +73,26 @@ const Shop = () => {
     }
 
     setFilteredBooks(filtered);
-  }, [searchTerm, selectedCategory, selectedPriceRange, sortBy]);
+  }, [searchTerm, selectedCategory, selectedPriceRange, sortBy, allBooks]);
+
+  async function handleAddToCart(bookId: number) {
+    if (!isLoggedIn()) {
+      navigate('/login');
+      return;
+    }
+
+    setAddingId(bookId);
+    try {
+      await apiFetch('/cart', {
+        method: 'POST',
+        body: JSON.stringify({ bookId, quantity: 1 }),
+      });
+    } catch (err: any) {
+      console.error('Add to cart failed:', err.message);
+    } finally {
+      setAddingId(null);
+    }
+  }
 
   return (
     <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
@@ -106,26 +145,37 @@ const Shop = () => {
         </select>
       </div>
 
-      <p className="my-4 text-gray-600 dark:text-gray-400 text-sm">Showing {filteredBooks.length} of {allBooks.length} books</p>
+      {loading && <p className="text-center py-12 text-gray-500 dark:text-gray-400">Loading books...</p>}
+      {error && <p className="text-center py-12 text-red-500">{error}</p>}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7.5">
-        {filteredBooks.map((book) => (
-          <div key={book.id} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden transition-all duration-300 shadow-sm border border-transparent dark:border-gray-700 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-72 overflow-hidden flex items-center justify-center p-4 bg-gray-50 dark:bg-gray-800/50">
-              <img src={book.image} alt={book.title} className="max-h-full max-w-full object-contain transition-all duration-300 hover:scale-105 shadow-md" />
-            </div>
-            <h3 className="text-lg px-4 pt-4 pb-1 text-gray-800 dark:text-white">{book.title}</h3>
-            <p className="px-4 text-gray-500 dark:text-gray-400 text-sm">{book.author}</p>
-            <span className="block px-4 py-2 text-xl font-bold text-orange-600">${book.price.toFixed(2)}</span>
-            <button className="mx-4 mb-5 w-[calc(100%-2rem)] bg-orange-600 text-white px-4 py-2 rounded-full font-semibold border-none cursor-pointer text-sm transition-all hover:bg-orange-500">
-              Add to Cart
-            </button>
+      {!loading && !error && (
+        <>
+          <p className="my-4 text-gray-600 dark:text-gray-400 text-sm">Showing {filteredBooks.length} of {allBooks.length} books</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7.5">
+            {filteredBooks.map((book) => (
+              <div key={book.id} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden transition-all duration-300 shadow-sm border border-transparent dark:border-gray-700 hover:-translate-y-1 hover:shadow-lg">
+                <div className="h-72 overflow-hidden flex items-center justify-center p-4 bg-gray-50 dark:bg-gray-800/50">
+                  <img src={book.image} alt={book.title} className="max-h-full max-w-full object-contain transition-all duration-300 hover:scale-105 shadow-md" />
+                </div>
+                <h3 className="text-lg px-4 pt-4 pb-1 text-gray-800 dark:text-white">{book.title}</h3>
+                <p className="px-4 text-gray-500 dark:text-gray-400 text-sm">{book.author}</p>
+                <span className="block px-4 py-2 text-xl font-bold text-orange-600">${book.price.toFixed(2)}</span>
+                <button
+                  onClick={() => handleAddToCart(book.id)}
+                  disabled={addingId === book.id}
+                  className="mx-4 mb-5 w-[calc(100%-2rem)] bg-orange-600 text-white px-4 py-2 rounded-full font-semibold border-none cursor-pointer text-sm transition-all hover:bg-orange-500 disabled:opacity-50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {filteredBooks.length === 0 && (
-        <p className="text-center py-12 text-gray-500 dark:text-gray-400 text-lg">No books found. Try a different search.</p>
+          {filteredBooks.length === 0 && (
+            <p className="text-center py-12 text-gray-500 dark:text-gray-400 text-lg">No books found. Try a different search.</p>
+          )}
+        </>
       )}
     </div>
   );
