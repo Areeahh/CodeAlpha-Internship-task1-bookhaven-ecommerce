@@ -48,7 +48,7 @@ const Home = () => (
     </div>
 
     {/* Categories Section */}
-    <div className="py-16 px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-5">
         <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">Shop by Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -64,7 +64,7 @@ const Home = () => (
     </div>
 
     {/* Best Sellers Section */}
-    <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-800 text-center transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-800 text-center transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-5">
         <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">📚 Best Sellers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -107,7 +107,7 @@ const Home = () => (
     </div>
 
     {/* Testimonials Section */}
-    <div className="py-16 px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-5">
         <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">What Readers Say</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -129,7 +129,7 @@ const Home = () => (
     </div>
 
     {/* Newsletter Section */}
-    <div className="py-16 px-[8%] bg-linear-to-br from-gray-800 to-gray-900 dark:from-black dark:to-gray-900 text-white text-center transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-linear-to-br from-gray-800 to-gray-900 dark:from-black dark:to-gray-900 text-white text-center transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-5">
         <h2 className="text-3xl md:text-4xl mb-4">Join Our Newsletter</h2>
         <p className="mb-6 opacity-90">Get 10% off your first order and exclusive book recommendations.</p>

@@ -1,5 +1,5 @@
 const Contact = () => (
-  <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
+  <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
     <div className="text-center mb-16">
       <h1 className="text-4xl md:text-5xl text-gray-800 dark:text-white mb-2">Get In Touch</h1>
       <p className="text-lg text-gray-500 dark:text-gray-400">We'd love to hear from you</p>

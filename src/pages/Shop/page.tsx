@@ -95,7 +95,7 @@ const Shop = () => {
   }
 
   return (
-    <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
       <div className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl text-gray-800 dark:text-white">Shop Books</h1>
       </div>
@@ -110,7 +110,7 @@ const Shop = () => {
         />
 
         <select
-          className="px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
+          className="w-full md:w-auto px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
@@ -122,7 +122,7 @@ const Shop = () => {
         </select>
 
         <select
-          className="px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
+          className="w-full md:w-auto px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
           value={selectedPriceRange}
           onChange={(e) => setSelectedPriceRange(e.target.value)}
         >
@@ -134,7 +134,7 @@ const Shop = () => {
         </select>
 
         <select
-          className="px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
+          className="w-full md:w-auto px-5 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm cursor-pointer hover:border-orange-500 dark:hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
         >

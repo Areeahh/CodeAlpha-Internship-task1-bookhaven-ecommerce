@@ -10,7 +10,7 @@ const reviews = [
 ];
 
 const Reviews = () => (
-  <div className="py-16 px-[8%] min-h-[80vh] dark:bg-gray-900 transition-colors duration-300">
+  <div className="py-8 md:py-16 px-5 md:px-[8%] min-h-[80vh] dark:bg-gray-900 transition-colors duration-300">
     <div className="text-center mb-16">
       <h1 className="text-4xl md:text-5xl text-gray-800 dark:text-white mb-4">What Our Readers Say</h1>
       <p className="text-lg text-gray-500 dark:text-gray-400">Real stories from the BookHaven community</p>

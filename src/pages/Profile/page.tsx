@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const Profile = () => (
-  <div className="py-16 px-[8%] min-h-[80vh] bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <div className="py-8 md:py-16 px-5 md:px-[8%] min-h-[80vh] bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
       
       {/* Sidebar Profile Info */}

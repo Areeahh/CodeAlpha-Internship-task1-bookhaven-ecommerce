@@ -78,14 +78,14 @@ const Cart = () => {
 
   if (loading) {
     return (
-      <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh]">
+      <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh]">
         <p className="text-center text-gray-500 dark:text-gray-400">Loading cart...</p>
       </div>
     );
   }
 
   return (
-    <div className="py-16 px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
       <h1 className="text-center text-gray-800 dark:text-white text-3xl md:text-4xl mb-2">Shopping Cart</h1>
       <p className="text-center text-gray-500 dark:text-gray-400 mb-10">Manage your items</p>
 
