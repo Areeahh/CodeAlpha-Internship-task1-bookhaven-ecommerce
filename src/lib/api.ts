@@ -4,7 +4,7 @@ export interface User {
   email: string;
 }
 
-const API_BASE = 'https://bookhaven-ecommerce-production.up.railway.app/api';
+const API_BASE = 'https://code-alpha-internship-task1-bookhaven-ecommerce-usv9tktk1.vercel.app/api';
 
 export function getToken(): string | null {
   return localStorage.getItem('token');
