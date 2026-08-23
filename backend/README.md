@@ -65,7 +65,8 @@ localStorage.setItem('token', response.token);
 
 Then attach it to requests:
 ```js
-fetch('http://localhost:5000/api/cart', {
-  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-});
-```
+// Import apiFetch at the top of the file:
+import { apiFetch } from '../lib/api';
+
+// Replace your fetch call with:
+const responseData = await apiFetch('/cart');

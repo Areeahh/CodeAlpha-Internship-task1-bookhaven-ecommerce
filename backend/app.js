@@ -11,21 +11,11 @@ const app = express();
 
 // CLIENT_ORIGIN can hold multiple allowed URLs separated by commas,
 // e.g. "http://localhost:5173,https://your-app.vercel.app"
-// This lets local development and the live deployed site both work at once.
 const allowedOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
   .split(',')
   .map((url) => url.trim());
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman, mobile apps, curl)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  }
-}));
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
