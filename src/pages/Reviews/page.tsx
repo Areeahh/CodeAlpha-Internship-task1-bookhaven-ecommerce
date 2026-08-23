@@ -10,40 +10,40 @@ const reviews = [
 ];
 
 const Reviews = () => (
-  <div className="py-8 md:py-16 px-5 md:px-[8%] min-h-[80vh] dark:bg-gray-900 transition-colors duration-300">
+  <div className="py-8 md:py-16 px-5 md:px-[8%] min-h-[80vh] transition-colors duration-300">
     <div className="text-center mb-16">
-      <h1 className="text-4xl md:text-5xl text-gray-800 dark:text-white mb-4">What Our Readers Say</h1>
-      <p className="text-lg text-gray-500 dark:text-gray-400">Real stories from the BookHaven community</p>
+      <h1 className="text-4xl md:text-5xl text-ink mb-4">What Our Readers Say</h1>
+      <p className="text-lg text-ink/50">Real stories from the BookHaven community</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       {reviews.map((review) => (
-        <div key={review.id} className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
+        <div key={review.id} className="bg-white p-8 rounded-2xl shadow-sm border border-ink/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
           <div className="flex justify-between items-start mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-full bg-orange-100 text-coral flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
                 {review.avatar}
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 dark:text-white">{review.name}</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{review.role}</p>
+                <h3 className="font-semibold text-ink">{review.name}</h3>
+                <p className="text-xs text-ink/50">{review.role}</p>
               </div>
             </div>
-            <div className="flex gap-1 text-orange-500 text-sm">
+            <div className="flex gap-1 text-coral-light text-sm">
               {[...Array(5)].map((_, i) => (
                 <span key={i}>{i < review.rating ? '★' : '☆'}</span>
               ))}
             </div>
           </div>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed italic text-sm">"{review.content}"</p>
+          <p className="text-ink/70 leading-relaxed italic text-sm">"{review.content}"</p>
         </div>
       ))}
     </div>
 
-    <div className="mt-20 text-center bg-orange-50 dark:bg-gray-800 p-12 rounded-3xl max-w-4xl mx-auto">
-      <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-white mb-4">Have a story to share?</h2>
-      <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">We'd love to hear about your experience with BookHaven. Your feedback helps us build a better sanctuary for book lovers.</p>
-      <Link to="/contact" className="bg-orange-600 text-white px-8 py-4 rounded-full font-semibold transition-all hover:bg-orange-500 hover:shadow-lg inline-block">
+    <div className="mt-20 text-center bg-orange-50 p-12 rounded-3xl max-w-4xl mx-auto">
+      <h2 className="text-2xl md:text-3xl text-ink mb-4">Have a story to share?</h2>
+      <p className="text-ink/70 mb-8 max-w-xl mx-auto">We'd love to hear about your experience with BookHaven. Your feedback helps us build a better sanctuary for book lovers.</p>
+      <Link to="/contact" className="bg-coral text-white px-8 py-4 rounded-full font-semibold transition-all hover:bg-coral-light hover:shadow-lg inline-block">
         Write a Review
       </Link>
     </div>

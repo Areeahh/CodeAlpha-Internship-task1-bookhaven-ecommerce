@@ -9,7 +9,6 @@ import Services from './pages/Services/page';
 import Contact from './pages/Contact/page';
 import Shop from './pages/Shop/page';
 import Cart from './pages/Cart/page';
-import About from './pages/About/page';
 import Reviews from './pages/Reviews/page';
 import Profile from './pages/Profile/page';
 
@@ -25,7 +24,6 @@ const App = () => (
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/about" element={<About />} />
       <Route path="/reviews" element={<Reviews />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<Navigate to="/" replace />} />

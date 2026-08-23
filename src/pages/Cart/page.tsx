@@ -78,65 +78,65 @@ const Cart = () => {
 
   if (loading) {
     return (
-      <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh]">
-        <p className="text-center text-gray-500 dark:text-gray-400">Loading cart...</p>
+      <div className="py-8 md:py-16 px-5 md:px-[8%] bg-cream min-h-[70vh]">
+        <p className="text-center text-ink/50">Loading cart...</p>
       </div>
     );
   }
 
   return (
-    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-900 min-h-[70vh] transition-colors duration-300">
-      <h1 className="text-center text-gray-800 dark:text-white text-3xl md:text-4xl mb-2">Shopping Cart</h1>
-      <p className="text-center text-gray-500 dark:text-gray-400 mb-10">Manage your items</p>
+    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-cream min-h-[70vh]">
+      <h1 className="text-center font-display italic text-ink text-3xl md:text-4xl mb-2">Shopping Cart</h1>
+      <p className="text-center text-ink/50 mb-10">Manage your items</p>
 
-      {error && <p className="text-center text-red-500 mb-6">{error}</p>}
+      {error && <p className="text-center text-coral-dark mb-6">{error}</p>}
 
       {items.length === 0 && !error ? (
-        <p className="text-center text-gray-500 dark:text-gray-400 text-lg">
-          Your cart is empty. <a href="/shop" className="text-orange-600 hover:underline">Go shopping</a>.
+        <p className="text-center text-ink/50 text-lg">
+          Your cart is empty. <a href="/shop" className="text-coral hover:underline">Go shopping</a>.
         </p>
       ) : (
         <>
-          <div className="bg-white dark:bg-gray-800 rounded-xl overflow-x-auto shadow-sm border border-transparent dark:border-gray-700">
+          <div className="bg-white rounded-xl overflow-x-auto border border-ink/5">
             <table className="w-full border-collapse min-w-150">
               <thead>
-                <tr className="bg-gray-800 dark:bg-gray-950 text-white">
-                  <th className="p-4 text-left font-semibold">Book</th>
-                  <th className="p-4 text-left font-semibold">Price</th>
-                  <th className="p-4 text-left font-semibold">Quantity</th>
-                  <th className="p-4 text-left font-semibold">Total</th>
-                  <th className="p-4 text-left font-semibold">Action</th>
+                <tr className="bg-charcoal text-cream">
+                  <th className="p-4 text-left font-medium font-display">Book</th>
+                  <th className="p-4 text-left font-medium font-display">Price</th>
+                  <th className="p-4 text-left font-medium font-display">Quantity</th>
+                  <th className="p-4 text-left font-medium font-display">Total</th>
+                  <th className="p-4 text-left font-medium font-display">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((item) => {
                   const price = Number(item.price);
                   return (
-                    <tr key={item.cart_item_id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                    <tr key={item.cart_item_id} className="border-b border-ink/5 hover:bg-cream/60 transition-colors">
                       <td className="p-5 align-middle">
                         <div className="flex items-center gap-4">
                           <img src={item.image} alt={item.title} className="w-15 h-20 object-cover rounded-lg shadow-sm" />
                           <div className="cart-info">
-                            <h4 className="text-gray-800 dark:text-gray-200 mb-1">{item.title}</h4>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm">{item.author}</p>
+                            <h4 className="font-display text-ink mb-1">{item.title}</h4>
+                            <p className="text-ink/50 text-sm">{item.author}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="p-5 align-middle text-gray-800 dark:text-gray-200 font-medium">${price.toFixed(2)}</td>
+                      <td className="p-5 align-middle text-ink font-medium">${price.toFixed(2)}</td>
                       <td className="p-5 align-middle">
                         <input
                           type="number"
-                          className="w-16.25 p-2 border border-gray-200 dark:border-gray-600 bg-transparent dark:text-white rounded-lg text-center focus:outline-none focus:border-orange-500"
+                          className="w-16.25 p-2 border border-ink/15 bg-transparent text-ink rounded-lg text-center focus:outline-none focus:border-coral"
                           value={item.quantity}
                           min="1"
                           onChange={(e) => handleQuantityChange(item.cart_item_id, Number(e.target.value))}
                         />
                       </td>
-                      <td className="p-5 align-middle font-bold text-gray-800 dark:text-white">${(price * item.quantity).toFixed(2)}</td>
+                      <td className="p-5 align-middle font-semibold text-ink">${(price * item.quantity).toFixed(2)}</td>
                       <td className="p-5 align-middle">
                         <button
                           onClick={() => handleRemove(item.cart_item_id)}
-                          className="bg-transparent border-none text-xl cursor-pointer text-gray-400 transition-colors hover:text-red-500"
+                          className="bg-transparent border-none text-xl cursor-pointer text-ink/30 transition-colors hover:text-coral-dark"
                           type="button"
                         >
                           ✕
@@ -150,30 +150,30 @@ const Cart = () => {
           </div>
 
           <div className="flex justify-end gap-7.5 mt-8 flex-wrap">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl min-w-70 shadow-sm border border-transparent dark:border-gray-700">
-              <h3 className="text-gray-800 dark:text-white mb-5 pb-2 border-b-2 border-gray-100 dark:border-gray-700">Order Summary</h3>
-              <div className="flex justify-between py-2 text-gray-800 dark:text-gray-300">
+            <div className="bg-white p-6 rounded-xl min-w-70 border border-ink/5">
+              <h3 className="font-display text-ink mb-5 pb-2 border-b-2 border-ink/10">Order Summary</h3>
+              <div className="flex justify-between py-2 text-ink/70">
                 <span>Subtotal:</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between py-2 text-gray-800 dark:text-gray-300">
+              <div className="flex justify-between py-2 text-ink/70">
                 <span>Shipping:</span>
                 <span>Free</span>
               </div>
-              <div className="h-px bg-gray-100 dark:bg-gray-700 my-2"></div>
-              <div className="flex justify-between py-2 text-xl font-bold text-gray-800 dark:text-white">
+              <div className="h-px bg-ink/10 my-2"></div>
+              <div className="flex justify-between py-2 text-xl font-semibold text-ink">
                 <span>Total:</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               <button
                 onClick={handleCheckout}
                 disabled={placingOrder}
-                className="w-full mt-4 mb-2 bg-orange-600 border-none cursor-pointer text-white py-3 rounded-full font-semibold hover:bg-orange-500 transition-colors disabled:opacity-50"
+                className="w-full mt-4 mb-2 bg-coral border-none cursor-pointer text-cream py-3 rounded-full font-medium hover:bg-coral-dark transition-colors disabled:opacity-50"
                 type="button"
               >
                 {placingOrder ? 'Placing order...' : 'Proceed to Checkout'}
               </button>
-              <a href="/shop" className="block text-center text-gray-500 dark:text-gray-400 no-underline text-sm hover:text-orange-600 transition-colors">
+              <a href="/shop" className="block text-center text-ink/50 no-underline text-sm hover:text-coral transition-colors">
                 Continue Shopping
               </a>
             </div>

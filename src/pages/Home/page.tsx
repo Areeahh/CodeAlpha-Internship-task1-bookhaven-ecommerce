@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/page';
+import FloatingBook3D from '../../components/FloatingBook3D/page';
 
 const features = [
-  { icon: '📦', title: 'Free Shipping', description: 'On all orders over $35' },
-  { icon: '📖', title: 'Curated Choice', description: 'Hand-picked by experts' },
-  { icon: '✨', title: 'New Releases', description: 'Get early access' }
+  { title: 'Free Shipping', description: 'On all orders over $35' },
+  { title: 'Curated Choice', description: 'Hand-picked by experts' },
+  { title: 'New Releases', description: 'Get early access' }
 ];
 
 const categories = [
-  { icon: '📖', title: 'Fiction', subtitle: '120+ books' },
-  { icon: '📜', title: 'Classics', subtitle: '85+ books' },
-  { icon: '✨', title: 'Fantasy', subtitle: '65+ books' },
-  { icon: '🔍', title: 'Mystery', subtitle: '45+ books' }
+  { title: 'Fiction', subtitle: '120+ books' },
+  { title: 'Classics', subtitle: '85+ books' },
+  { title: 'Fantasy', subtitle: '65+ books' },
+  { title: 'Mystery', subtitle: '45+ books' }
 ];
 
 const bestsellers = [
@@ -28,35 +28,61 @@ const testimonials = [
 ];
 
 const Home = () => (
-  <div className="dark:bg-gray-900 transition-colors duration-300">
-    <Header
-      title="Escape Into a New World"
-      subtitle="From timeless classics to modern bestsellers, find your next favorite story."
-      buttonText="Browse Services →"
-      buttonLink="/services"
-    />
+  <div className="bg-cream">
+
+    {/* Hero */}
+    <div className="relative overflow-hidden bg-linear-to-b from-coral-light via-blush to-cream">
+      <div className="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-10 md:pb-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className="text-center md:text-left order-2 md:order-1">
+          <h1 className="font-display italic text-4xl sm:text-5xl md:text-6xl text-ink leading-tight mb-6">
+            Beyond pages<br />into wonder
+          </h1>
+          <p className="text-ink/70 text-base md:text-lg max-w-md mx-auto md:mx-0 mb-8">
+            From timeless classics to modern bestsellers — a curated shelf for every kind of reader.
+          </p>
+          <Link
+            to="/shop"
+            className="inline-block bg-ink text-cream px-8 py-3.5 rounded-full font-medium tracking-wide no-underline transition-all hover:bg-coral"
+          >
+            See All Books
+          </Link>
+        </div>
+        <div className="order-1 md:order-2">
+          <FloatingBook3D />
+        </div>
+      </div>
+
+      {/* Oversized editorial wordmark */}
+      <div className="text-center pb-4 md:pb-8 select-none pointer-events-none">
+        <h2 className="font-display italic text-[16vw] md:text-[9rem] leading-none text-ink/10">
+          BookHaven
+        </h2>
+      </div>
+    </div>
 
     {/* Features Section */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-20 px-[8%] bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 py-10 md:py-20 px-5 md:px-[8%] bg-cream">
       {features.map((item) => (
-        <div key={item.title} className="text-center p-10 bg-gray-50 dark:bg-gray-800 rounded-xl transition-all hover:-translate-y-1 hover:shadow-md border border-transparent dark:border-gray-700">
-          <div className="text-4xl mb-4">{item.icon}</div>
-          <h3 className="text-xl mb-2 text-gray-800 dark:text-white">{item.title}</h3>
-          <p className="text-gray-500 dark:text-gray-400">{item.description}</p>
+        <div key={item.title} className="text-center p-8 md:p-10 bg-white rounded-2xl transition-all hover:-translate-y-1 hover:shadow-lg border border-ink/5">
+          <h3 className="font-display text-xl mb-2 text-ink">{item.title}</h3>
+          <p className="text-ink/60 text-sm">{item.description}</p>
         </div>
       ))}
     </div>
 
     {/* Categories Section */}
-    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">Shop by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+    <div className="py-10 md:py-16 px-5 md:px-[8%] bg-white text-center">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-display italic text-3xl md:text-4xl text-ink mb-10">Shop by Category</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
           {categories.map((item) => (
-            <Link key={item.title} to="/services" className="bg-gray-50 dark:bg-gray-800 py-8 px-4 rounded-xl transition-all hover:-translate-y-1 hover:shadow-md text-center block no-underline border border-transparent dark:border-gray-700">
-              <span className="text-3xl block mb-3">{item.icon}</span>
-              <h3 className="text-gray-800 dark:text-white mb-1 text-lg">{item.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-xs">{item.subtitle}</p>
+            <Link
+              key={item.title}
+              to="/shop"
+              className="bg-cream py-8 px-4 rounded-2xl transition-all hover:-translate-y-1 hover:shadow-md text-center block no-underline border border-ink/5"
+            >
+              <h3 className="font-display text-ink mb-1 text-lg">{item.title}</h3>
+              <p className="text-ink/50 text-xs">{item.subtitle}</p>
             </Link>
           ))}
         </div>
@@ -64,26 +90,23 @@ const Home = () => (
     </div>
 
     {/* Best Sellers Section */}
-    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-gray-50 dark:bg-gray-800 text-center transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">📚 Best Sellers</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <div className="py-10 md:py-16 px-5 md:px-[8%] bg-blush/40 text-center">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-display italic text-3xl md:text-4xl text-ink mb-10">Best Sellers</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {bestsellers.map((book) => (
-            <div key={book.title} className="bg-white dark:bg-gray-900 rounded-xl p-5 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-transparent dark:border-gray-700">
-              <div className="h-48 flex items-center justify-center mb-4">
-                <img src={book.image} alt={book.title} className="max-h-full max-w-full object-contain" />
+            <div key={book.title} className="bg-white rounded-2xl p-5 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg border border-ink/5">
+              <div className="h-40 md:h-48 flex items-center justify-center mb-4">
+                <img src={book.image} alt={book.title} className="max-h-full max-w-full object-contain rounded" />
               </div>
-              <h3 className="text-gray-800 dark:text-white mb-1 text-base">{book.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-xs mb-2">{book.author}</p>
-              <span className="font-bold text-orange-600 block mb-3">{book.price}</span>
-              <button className="bg-orange-600 text-white px-4 py-1.5 rounded-full font-semibold text-xs w-full transition-all hover:bg-orange-500 hover:-translate-y-0.5 border-none cursor-pointer">
-                Add to Cart
-              </button>
+              <h3 className="text-ink mb-1 text-sm md:text-base font-display">{book.title}</h3>
+              <p className="text-ink/50 text-xs mb-2">{book.author}</p>
+              <span className="font-semibold text-coral block">{book.price}</span>
             </div>
           ))}
         </div>
         <div className="text-center mt-10">
-          <Link to="/services" className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold inline-block transition-all hover:bg-orange-500 hover:-translate-y-0.5 no-underline">
+          <Link to="/shop" className="bg-ink text-cream px-7 py-3 rounded-full font-medium tracking-wide inline-block transition-all hover:bg-coral no-underline">
             View All Books →
           </Link>
         </div>
@@ -91,51 +114,52 @@ const Home = () => (
     </div>
 
     {/* About Section */}
-    <div className="flex items-center gap-16 py-20 px-[8%] bg-white dark:bg-gray-900 flex-wrap transition-colors duration-300">
+    <div className="flex items-center gap-8 md:gap-16 py-10 md:py-20 px-5 md:px-[8%] bg-cream flex-wrap">
       <div className="flex-1 min-w-70">
         <img src="/images/books1.jpeg" alt="Bookstore" className="w-full rounded-2xl shadow-lg" />
       </div>
       <div className="flex-1 min-w-70">
-        <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-5">Our Story</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+        <h2 className="font-display italic text-3xl md:text-4xl text-ink mb-5">Our Story</h2>
+        <p className="text-ink/60 leading-relaxed mb-6">
           BookHaven started as a small passion project and grew into a beloved online bookstore. We are committed to bringing the joy of reading to book lovers everywhere.
         </p>
-        <Link to="/services" className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold inline-block transition-all hover:bg-orange-500 no-underline">
+        <Link to="/about" className="bg-ink text-cream px-6 py-3 rounded-full font-medium tracking-wide inline-block transition-all hover:bg-coral no-underline">
           Learn More →
         </Link>
       </div>
     </div>
 
     {/* Testimonials Section */}
-    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-white dark:bg-gray-900 text-center transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-white mb-10">What Readers Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+    <div className="py-10 md:py-16 px-5 md:px-[8%] bg-white text-center">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-display italic text-3xl md:text-4xl text-ink mb-10">What Readers Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {testimonials.map((item) => (
-            <div key={item.name} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-transparent dark:border-gray-700">
-              <div className="text-4xl text-orange-600 font-serif mb-2">"</div>
-              <p className="text-gray-800 dark:text-gray-200 italic mb-4 text-sm">{item.quote}</p>
-              <div className="customer">
-                <strong className="block text-gray-800 dark:text-white mb-1 text-sm">- {item.name}</strong>
-                <span className="text-orange-600 text-xs">⭐⭐⭐⭐⭐</span>
-              </div>
+            <div key={item.name} className="bg-cream p-6 rounded-2xl border border-ink/5">
+              <div className="text-4xl text-coral font-display mb-2">"</div>
+              <p className="text-ink/70 italic mb-4 text-sm">{item.quote}</p>
+              <strong className="block text-ink text-sm font-display">— {item.name}</strong>
             </div>
           ))}
         </div>
         <div className="mt-10">
-          <Link to="/reviews" className="text-orange-600 font-semibold hover:underline">Read All Reviews →</Link>
+          <Link to="/reviews" className="text-coral font-medium hover:underline">Read All Reviews →</Link>
         </div>
       </div>
     </div>
 
     {/* Newsletter Section */}
-    <div className="py-8 md:py-16 px-5 md:px-[8%] bg-linear-to-br from-gray-800 to-gray-900 dark:from-black dark:to-gray-900 text-white text-center transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl mb-4">Join Our Newsletter</h2>
-        <p className="mb-6 opacity-90">Get 10% off your first order and exclusive book recommendations.</p>
-        <div className="flex gap-4 justify-center flex-wrap max-w-md mx-auto">
-          <input type="email" placeholder="Enter your email address" className="flex-1 py-3 px-5 border-none rounded-full text-sm min-w-55 focus:outline-none text-gray-800" />
-          <button className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-white hover:text-gray-800 border-none cursor-pointer">
+    <div className="py-10 md:py-16 px-5 md:px-[8%] bg-charcoal text-cream text-center">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-display italic text-3xl md:text-4xl mb-4">Join Our Newsletter</h2>
+        <p className="mb-6 text-cream/70">Get 10% off your first order and exclusive book recommendations.</p>
+        <div className="flex gap-3 justify-center flex-wrap max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            className="flex-1 py-3 px-5 border-none rounded-full text-sm min-w-55 focus:outline-none text-ink"
+          />
+          <button className="bg-coral text-cream px-6 py-3 rounded-full font-medium transition-all hover:bg-coral-dark border-none cursor-pointer">
             Subscribe
           </button>
         </div>
